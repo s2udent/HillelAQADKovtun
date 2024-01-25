@@ -24,10 +24,10 @@ if __name__ == '__main__':
     num_list12 = [10, 5, 8, 7, 3, 5, 8, 99, 90, 76]
     num_list13 = [10, 5, 8, 7, 3, 5, 8, 99, 90, 76, 55, 66]
 
-    max_min_len_lamblda = lambda *args: (item for item in args if (len(item)) in
+    max_min_len_lamblda = lambda *args: list(item for item in args if (len(item)) in
                                          [min(list((len(arg) for arg in args))), max(list((len(arg) for arg in args)))])
 
     '''функція приймає довільну кількість списків,
     повертає список з найкоротшим та найдовшим з усіх переданних.'''
 
-    print(list(max_min_len_lamblda(num_list10, num_list11, num_list12, num_list13)))
+    print(max_min_len_lamblda(num_list10, num_list11, num_list12, num_list13))
