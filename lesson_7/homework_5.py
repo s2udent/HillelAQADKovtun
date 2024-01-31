@@ -12,10 +12,31 @@ if __name__ == '__main__':
     # Task 2
 
     test_str = '-55366'
+    test_str_with_float = '-36.6'
 
-    str_is_digit_labda = lambda string: string.isdigit() or string.startswith('-') and string.split('-')[1].isdigit()
+    str_is_digit_labda = lambda string: (((string.split('.')[0].split('-')[1].isdigit()
+                                          and (string.split('.')[1].isdigit()))
+                                          if string.split('.')[0].startswith('-')
+                                          else (string.split('.')[0].isdigit() and string.split('.')[1].isdigit()))
+                                         if '.' in string
+                                         else (string.isdigit() or string.startswith('-')
+                                               and string.split('-')[1].isdigit()))
 
     print(str_is_digit_labda(test_str))
+    print(str_is_digit_labda(test_str_with_float))
+
+    '''
+    more understandable view of lambda above
+    
+    if '.' in test_float:
+        float_list = test_float.split('.')
+        if float_list[0].startswith('-'):
+            print(float_list[0].split('-')[1].isdigit() and float_list[1].isdigit())
+        else:
+            print(float_list[0].isdigit() and float_list[1].isdigit())
+    else:
+        print(test_float.isdigit() or test_float.startswith('-') and test_float.split('-')[1].isdigit())'''
+
 
     # Task 3
 
