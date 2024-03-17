@@ -12,3 +12,18 @@ def test_quantity_of_product(glass_product):
     glass_product.select_quantity_2()
     ending_quantity = glass_product.get_quantity_of_product()
     assert ending_quantity == beginning_quantity+1
+
+
+def test_go_to_main_page_from_product(glass_product):
+    glass_product.go_to_main_page()
+    glass_product.check_title('≡ EVA.UA - гіпермаркет краси')
+
+
+def test_continue_shopping_from_cart(glass_product):
+    glass_product.add_to_card()
+    glass_product.check_text_in_cart_popup_header('Товарів у кошику: 1')
+    glass_product.continue_shopping_from_cart()
+    glass_product.verify_cart_is_not_shown()
+
+
+

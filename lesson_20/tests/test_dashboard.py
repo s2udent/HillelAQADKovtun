@@ -32,4 +32,9 @@ def test_go_to_tracking(dashboard):
     assert dashboard.check_title('Відстежити власне замовлення на EVA.UA')
 
 
+def test_open_mom_of_the_year(dashboard):
+    dashboard.go_to_mom_of_the_year()
+    assert dashboard.check_title('Мама року - Головна')
+
+
 

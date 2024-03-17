@@ -5,7 +5,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from lesson_20.core import BaseLocators
 
-
 class BasePage:
 
     def __init__(self, driver, wait_time=5):
@@ -31,6 +30,15 @@ class BasePage:
         element = self.wait_until_element_presence(locator)
         ActionChains(self.driver).move_to_element(element).perform()
 
+    def url_contains(self, text):
+        return self.web_driver_wait.until(EC.url_contains(text))
+
+    def invisibility_of_cart(self, locator):
+        return self.web_driver_wait.until(EC.invisibility_of_element(locator))
+
+    def get_attribute(self, locator, atr_type='name'):
+        return self.wait_until_element_presence(locator).get_attribute(atr_type)
+
     def check_text_in_element(self, locator, text):
         return self.web_driver_wait.until(EC.text_to_be_present_in_element(locator, text))
 
@@ -45,5 +53,13 @@ class BasePage:
 
     def enter_text_to_search(self, text):
         self.enter_text(text, self.locators.search_field)
+
+    def go_to_main_page(self):
+        self.click_on_element(self.locators.main_page_logo)
+
+    def go_to_mom_of_the_year(self):
+        self.click_on_element(self.locators.mom_of_the_year)
+
+
 
 
