@@ -20,8 +20,8 @@ def dashboard(driver):
 
 
 @pytest.fixture
-def set_of_glasses(driver):
-    driver.get('https://eva.ua/ua/pr439493/')
+def glass_product(driver):
+    driver.get('https://eva.ua/ua/pr31280/')
     yield Product(driver)
 
 

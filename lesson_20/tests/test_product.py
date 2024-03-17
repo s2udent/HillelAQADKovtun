@@ -7,8 +7,8 @@ def test_add_to_cart_glasses_from_search(dashboard):
     assert product_item.check_text_in_cart_popup_header('Товарів у кошику: 1')
 
 
-def test_quantity_of_product(set_of_glasses):
-    beginning_quantity = set_of_glasses.get_quantity_of_product()
-    set_of_glasses.select_quantity_2()
-    ending_quantity = set_of_glasses.get_quantity_of_product()
+def test_quantity_of_product(glass_product):
+    beginning_quantity = glass_product.get_quantity_of_product()
+    glass_product.select_quantity_2()
+    ending_quantity = glass_product.get_quantity_of_product()
     assert ending_quantity == beginning_quantity+1
