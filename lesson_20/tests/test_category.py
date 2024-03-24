@@ -1,8 +1,10 @@
 import time
+
+
 def test_open_spring_perfume_from_base(dashboard):
     dashboard.hover_menu_perfumes()
     category = dashboard.click_spring_perfume()
-    assert category.check_title('ᐈ Весняні парфуми — купити на EVA.UA @ Київ і Україна')
+    assert category.url_contains('vesennie-duhi')
 
 
 def test_select_kelvin_klein(spring_perfume):

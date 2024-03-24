@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from lesson_20.core import BaseLocators
 
+
 class BasePage:
 
     def __init__(self, driver, wait_time=5):
@@ -25,6 +26,9 @@ class BasePage:
 
     def check_title(self, title):
         return self.web_driver_wait.until(EC.title_is(title))
+
+    def title_contains(self, text):
+        return self.web_driver_wait.until(EC.title_contains(text))
 
     def hover_element(self, locator):
         element = self.wait_until_element_presence(locator)
@@ -59,6 +63,36 @@ class BasePage:
 
     def go_to_mom_of_the_year(self):
         self.click_on_element(self.locators.mom_of_the_year)
+
+    def check_items_in_category_menu(self, category, items_list):
+        self.hover_element(category)
+        for item in items_list:
+            item_obj = self.wait_until_element_presence(item)
+            assert item_obj.is_displayed()
+
+
+class Cookies:
+
+    def __init__(self, driver):
+        self.driver = driver
+        self.cookies = None
+
+    def get_cookies(self):
+        self.cookies = self.driver.get_cookies()
+        return self.cookies
+
+
+class LocalStorage:
+
+    def __init__(self, driver):
+        self.driver = driver
+        self.value_from_local_storage = None
+
+    def get_value_from_local_storage(self, key='shop/cart/current-cart-token'):
+        value = self.driver.execute_script(f'return window.localStorage["{key}"];')
+        self.value_from_local_storage = {key: value}
+        return self.value_from_local_storage
+
 
 
 
